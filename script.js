@@ -75,7 +75,7 @@ console.log(slicedArr);
 slicedArr.forEach(names => {
     console.log(names.name)
 })
-//=============================
+//======================
 
 const newPic = () => {
   picEl.innerHTML += `<img src="students/${getRandom.image}" alt="">`;
