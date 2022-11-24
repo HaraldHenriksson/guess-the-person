@@ -1,0 +1,49 @@
+html {
+	font-size: 1em;
+}
+
+body {
+	color: #333;
+	font-family: 'Baskervville', monospace;
+	font-weight: 400;
+}
+
+ h1 {
+	display: flex;
+	justify-content: center;
+} 
+
+.image {
+	display: flex;
+	justify-content: center; 
+	margin-top: 10%;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
+
+#pic {
+	display: none;
+}
+
+.namesContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center; 
+	margin: 5%;
+	padding: 5%;
+	display: none;
+}
+button {
+	margin: 5%;
+}
+
+.startGame {
+	display: flex;
+	flex-direction: column;
+	justify-content: center; 
+	margin: 5%;
+	padding: 5%;
+}

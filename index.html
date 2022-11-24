@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>28-workshop-guess-the-number-dom-edition</title>
+
+	<!-- Nice font -->
+	<link href="https://fonts.googleapis.com/css?family=Baskervville:400,400i&display=swap" rel="stylesheet">
+
+	<!-- Bootstrap 5.2 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-dark text-white">
+	<div id="app" class="container">
+		<div id="top">
+			<h1>Guess The Person Quiz</h1>
+            <!-- <h2 id="guesses">0 guesses </h2> -->
+		</div>
+        <div class="image">
+                    <div id="pic"></div>
+			</div>
+			<div id="start" class="startGame">
+				<h2>Choose how many people to start start game</h2>
+				<button class="btn btn-light">Guess 10 people</button>
+				<button class="btn btn-light">Guess 20 people</button>
+				<button class="btn btn-light">Guess all people in class</button>
+			</div>
+			<div id="names" class="namesContainer">
+				<button id="btn" class="btn btn-light">Name secondname</button>
+				<button id="btn" class="btn btn-light">Name secondname</button>
+				<button id="btn" class="btn btn-light">Name secondname</button>
+				<button id="btn" class="btn btn-light">Name secondname</button>
+        </div>
+	
+
+		<div id="turnout" class="display-1"></div>
+	</div>
+	<script src="students/students.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
