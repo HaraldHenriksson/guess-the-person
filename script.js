@@ -46,6 +46,7 @@ const namesEl = document.querySelector('#names')
 const tenEl = document.querySelector('#ten')
 const twentyEl = document.querySelector('#twenty')
 const allEl = document.querySelector('#all')
+const btnEl = document.querySelector('#btn');
 
 
 startEl.addEventListener('click', () => {
@@ -91,18 +92,39 @@ let corrName = "";
 
 // START function 
 const start = () => {
-  if (guesses !== students.length) {
 
-    
+  
+  if (guesses !== array.length) {
+
+    //DISPLAY CORRECT PHOTO HERE SOMEHOW
 
   //SHUFFLE THE ARRAY
     shuffleArr(arrayCopy);
   //GENERATE NEW ARRAY
-  arrayCopy.slice(0, 3) = newRandomArr
+  newRandomArr = arrayCopy.slice(0, 3);
+  newRandomArr.push(corrName);
   console.log(newRandomArr)
 
+
+    btnEl.innerHTML = "";
+
+    // DISPLAYING NAMES FROM NEW ARRAY
+    newRandomArr.forEach( (names) => {
+      if (names.name === corrName) {
+        btnEl.innerHTML += `<button id="corrGuess" class="btn btn-light">${names.name}</button>`
+      } else btnEl.innerHTML += `<button id="btn" class="btn btn-light">${names.name}</button>`
+    })
   }
 }
+start();
+
+btnEl.addEventListener('click', e => {
+
+  if (e.target.tagName === 'BUTTON') {
+    guesses++;
+    console.log(guesses)
+  }
+})
 
 
 
