@@ -40,49 +40,41 @@ Om du gjort G eller VG-nivå
 Ev. kända buggar eller kommentarer du tror jag skulle ha nytta av när jag granskar din inlämning
 */
 
-const picEl = document.querySelector('#pic');
-const startEl = document.querySelector('#start')
-const namesEl = document.querySelector('#names')
-const tenEl = document.querySelector('#ten')
-const twentyEl = document.querySelector('#twenty')
-const allEl = document.querySelector('#all')
-const btnEl = document.querySelector('#btn');
+const picEl = document.querySelector("#pic");
+const startEl = document.querySelector("#start");
+const namesEl = document.querySelector("#names");
+const tenEl = document.querySelector("#ten");
+const twentyEl = document.querySelector("#twenty");
+const allEl = document.querySelector("#all");
+const btnEl = document.querySelector("#btn");
 
-
-startEl.addEventListener('click', () => {
-    startEl.style.display = 'none';
-    namesEl.style.display = 'flex';
-    picEl.style.display = 'flex';
+startEl.addEventListener("click", () => {
+  startEl.style.display = "none";
+  namesEl.style.display = "flex";
+  picEl.style.display = "flex";
 });
 
-
 // MAKING A COPY OF ARRAY
-arrayCopy = [...array]
+arrayCopy = [...array];
 
-
-
-tenEl.addEventListener('click', () => {
+tenEl.addEventListener("click", () => {
   easyMode = arrayCopy.slice(0, 10);
   console.log(easyMode);
 });
 
-twentyEl.addEventListener('click', () => {
-  
-});
+twentyEl.addEventListener("click", () => {});
 
-allEl.addEventListener('click', () => {
-  
-});
+allEl.addEventListener("click", () => {});
 
-// ADDING FISHER YATES METHOD 
+// ADDING FISHER YATES METHOD
 const shuffleArr = (array) => {
-	for (let i = array.length - 1; i > 0; i--)  {
-		const j = Math.floor(Math.random() * (i + 1));
-		const temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
-}
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+};
 
 let guesses = 0;
 let corrNrOfGuesses = 0;
@@ -90,57 +82,49 @@ let newRandomArr = [];
 let corrClassmate = "";
 let corrName = "";
 
-// START function 
+// START function
 const start = () => {
-
-  
   if (guesses !== array.length) {
-
     //DISPLAY CORRECT PHOTO HERE SOMEHOW
 
-  //SHUFFLE THE ARRAY
+    //SHUFFLE THE ARRAY
     shuffleArr(arrayCopy);
-  //GENERATE NEW ARRAY
-  newRandomArr = arrayCopy.slice(0, 3);
-  newRandomArr.push(corrName);
-  console.log(newRandomArr)
-
+    //GENERATE NEW ARRAY
+    newRandomArr = arrayCopy.slice(0, 3);
+    newRandomArr.push(corrName);
+    console.log(newRandomArr);
 
     btnEl.innerHTML = "";
 
     // DISPLAYING NAMES FROM NEW ARRAY
-    newRandomArr.forEach( (names) => {
+    newRandomArr.forEach((names) => {
       if (names.name === corrName) {
-        btnEl.innerHTML += `<button id="corrGuess" class="btn btn-light">${names.name}</button>`
-      } else btnEl.innerHTML += `<button id="btn" class="btn btn-light">${names.name}</button>`
-    })
+        btnEl.innerHTML += `<button id="corrGuess" class="btn btn-light">${names.name}</button>`;
+      } else
+        btnEl.innerHTML += `<button id="btn" class="btn btn-light">${names.name}</button>`;
+    });
   }
-}
+};
 start();
 
-btnEl.addEventListener('click', e => {
-
-  if (e.target.tagName === 'BUTTON') {
+btnEl.addEventListener("click", (e) => {
+  if (e.target.tagName === "BUTTON") {
     guesses++;
-    console.log(guesses)
+    console.log(guesses);
   }
-})
+});
 
-
-
-// // GETTING THE CORRECT NAME 
+// // GETTING THE CORRECT NAME
 // const getRandom = array[Math.floor(Math.random() * array.length)];
 // console.log(getRandom.image, getRandom.name);
 
 // const actualName = getRandom.name
 // console.log(actualName)
 
-
-// //MAKING A FUNCTION WICH GENERATES RANDOM NAMES 
+// //MAKING A FUNCTION WICH GENERATES RANDOM NAMES
 // const randomNames = () => {
 //    return array[Math.floor(Math.random() * array.length)]
 // }
-
 
 // // MAKING A NEW RANDOM ARRAY WITH 3 MORE NAMES
 // const randomArr = array.sort(() => 0.5 - Math.random());
