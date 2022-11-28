@@ -57,15 +57,6 @@ startEl.addEventListener("click", () => {
 // MAKING A COPY OF ARRAY
 arrayCopy = [...array];
 
-tenEl.addEventListener("click", () => {
-  easyMode = arrayCopy.slice(0, 10);
-  console.log(easyMode);
-});
-
-twentyEl.addEventListener("click", () => {});
-
-allEl.addEventListener("click", () => {});
-
 // ADDING FISHER YATES METHOD
 const shuffleArr = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -76,6 +67,21 @@ const shuffleArr = (array) => {
   }
 };
 
+tenEl.addEventListener("click", () => {
+  easyMode = arrayCopy.slice(0, 10);
+  console.log(easyMode);
+});
+
+twentyEl.addEventListener("click", () => {
+  mediumMode = arrayCopy.slice(0, 20);
+  console.log(mediumMode);
+});
+
+allEl.addEventListener("click", () => {
+  hardMode = arrayCopy
+  console.log(hardMode);
+});
+
 let guesses = 0;
 let corrNrOfGuesses = 0;
 let newRandomArr = [];
@@ -85,7 +91,13 @@ let corrName = "";
 // START function
 const start = () => {
   if (guesses !== array.length) {
-    //DISPLAY CORRECT PHOTO HERE SOMEHOW
+    corrClassmate = array[Math.floor(Math.random() * array.length)]
+    picEl.src += corrClassmate.image
+     console.log(corrClassmate)
+    // console.log(picEl.src)
+    corrName = corrClassmate.name
+    arrayCopy = array.filter(array => array.name !== corrName);
+    
 
     //SHUFFLE THE ARRAY
     shuffleArr(arrayCopy);
@@ -115,7 +127,11 @@ btnEl.addEventListener("click", (e) => {
     console.log(guesses);
     if (e,target.id === `corrGuess`) {
       corrNrOfGuesses++;
+      start();
+    } else {
+      start();
     }
+    console.log(guesses, corrNrOfGuesses);
   }
 });
 
