@@ -93,6 +93,8 @@ const start = () => {
     newRandomArr = arrayCopy.slice(0, 3);
     newRandomArr.push(corrName);
     console.log(newRandomArr);
+    //SHUFFFLE NEW ARRAY AGAIN SO RIGHT BUTTON ISN'T AT THE SAME SPOT EVERY TIME 
+    shuffleArr(newRandomArr);
 
     btnEl.innerHTML = "";
 
@@ -111,6 +113,9 @@ btnEl.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
     guesses++;
     console.log(guesses);
+    if (e,target.id === `corrGuess`) {
+      corrNrOfGuesses++;
+    }
   }
 });
 
