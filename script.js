@@ -92,15 +92,17 @@ let corrName = "";
 const start = () => {
   if (guesses !== array.length) {
     corrClassmate = array[Math.floor(Math.random() * array.length)]
+    console.log(corrClassmate.image)
     picEl.src += corrClassmate.image
-     console.log(corrClassmate)
+    // picEl.innerHTML = `<img  id="pic" src="students/${corrClassmate.image}" alt="">`;
+   //  console.log(corrClassmate)
     // console.log(picEl.src)
     corrName = corrClassmate.name
     arrayCopy = array.filter(array => array.name !== corrName);
     
 
     //SHUFFLE THE ARRAY
-    shuffleArr(arrayCopy);
+    shuffleArr(arrayCopy);  
     //GENERATE NEW ARRAY
     newRandomArr = arrayCopy.slice(0, 3);
     newRandomArr.push(corrName);
