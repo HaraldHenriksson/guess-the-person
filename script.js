@@ -43,6 +43,9 @@ Ev. kända buggar eller kommentarer du tror jag skulle ha nytta av när jag gran
 const picEl = document.querySelector('#pic');
 const startEl = document.querySelector('#start')
 const namesEl = document.querySelector('#names')
+const tenEl = document.querySelector('#ten')
+const twentyEl = document.querySelector('#twenty')
+const allEl = document.querySelector('#all')
 
 
 startEl.addEventListener('click', () => {
@@ -50,6 +53,36 @@ startEl.addEventListener('click', () => {
     namesEl.style.display = 'flex';
     picEl.style.display = 'flex';
 });
+
+
+// MAKING A COPY OF ARRAY
+arrayCopy = [...array]
+
+
+
+tenEl.addEventListener('click', () => {
+  easyMode = arrayCopy.slice(0, 10);
+  console.log(easyMode);
+});
+
+twentyEl.addEventListener('click', () => {
+  
+});
+
+allEl.addEventListener('click', () => {
+  
+});
+
+// ADDING FISHER YATES METHOD 
+const shuffleArr = (array) => {
+	for (let i = array.length - 1; i > 0; i--)  {
+		const j = Math.floor(Math.random() * (i + 1));
+		const temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+}
+
 
 // GETTING THE CORRECT NAME 
 const getRandom = array[Math.floor(Math.random() * array.length)];
