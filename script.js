@@ -83,34 +83,56 @@ const shuffleArr = (array) => {
 	}
 }
 
+let guesses = 0;
+let corrNrOfGuesses = 0;
+let newRandomArr = [];
+let corrClassmate = "";
+let corrName = "";
 
-// GETTING THE CORRECT NAME 
-const getRandom = array[Math.floor(Math.random() * array.length)];
-console.log(getRandom.image, getRandom.name);
+// START function 
+const start = () => {
+  if (guesses !== students.length) {
 
-const actualName = getRandom.name
-console.log(actualName)
+    
 
+  //SHUFFLE THE ARRAY
+    shuffleArr(arrayCopy);
+  //GENERATE NEW ARRAY
+  arrayCopy.slice(0, 3) = newRandomArr
+  console.log(newRandomArr)
 
-//MAKING A FUNCTION WICH GENERATES RANDOM NAMES 
-const randomNames = () => {
-   return array[Math.floor(Math.random() * array.length)]
+  }
 }
 
 
-// MAKING A NEW RANDOM ARRAY WITH 3 MORE NAMES
-const randomArr = array.sort(() => 0.5 - Math.random());
-console.log(randomArr)
 
-const slicedArr = randomArr.slice(0, 3);
-console.log(slicedArr);
+// // GETTING THE CORRECT NAME 
+// const getRandom = array[Math.floor(Math.random() * array.length)];
+// console.log(getRandom.image, getRandom.name);
 
-slicedArr.forEach(names => {
-    console.log(names.name)
-})
-//======================
+// const actualName = getRandom.name
+// console.log(actualName)
 
-const newPic = () => {
-  picEl.innerHTML += `<img src="students/${getRandom.image}" alt="">`;
-};
-newPic();
+
+// //MAKING A FUNCTION WICH GENERATES RANDOM NAMES 
+// const randomNames = () => {
+//    return array[Math.floor(Math.random() * array.length)]
+// }
+
+
+// // MAKING A NEW RANDOM ARRAY WITH 3 MORE NAMES
+// const randomArr = array.sort(() => 0.5 - Math.random());
+// console.log(randomArr)
+
+// const slicedArr = randomArr.slice(0, 3);
+// console.log(slicedArr);
+
+// slicedArr.forEach(names => {
+//     console.log(names.name)
+// })
+// //======================
+
+// const newPic = () => {
+//   picEl.innerHTML += `<img src="students/${getRandom.image}" alt="">`;
+// };
+// newPic();
