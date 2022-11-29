@@ -67,19 +67,21 @@ const shuffleArr = (array) => {
   }
 };
 
+let shortMode = false;
+let defaultMode = false;
+let longMode = false;
+
+
 tenEl.addEventListener("click", () => {
-  easyMode = arrayCopy.slice(0, 10);
-  console.log(easyMode);
+  shortMode = true
 });
 
 twentyEl.addEventListener("click", () => {
-  mediumMode = arrayCopy.slice(0, 20);
-  console.log(mediumMode);
+  defaultMode = true
 });
 
 allEl.addEventListener("click", () => {
-  hardMode = arrayCopy
-  console.log(hardMode);
+  longMode = true
 });
 
 let guesses = 0;
@@ -92,42 +94,42 @@ let corrName = "";
 const start = () => {
   if (guesses !== array.length) {
     corrClassmate = array[Math.floor(Math.random() * array.length)]
-    console.log(corrClassmate.image)
+    //console.log(corrClassmate.image)
     picEl.src += corrClassmate.image
-    // picEl.innerHTML = `<img  id="pic" src="students/${corrClassmate.image}" alt="">`;
-   //  console.log(corrClassmate)
-    // console.log(picEl.src)
     corrName = corrClassmate.name
-    arrayCopy = array.filter(array => array.name !== corrName);
+   // console.log(corrName)
+  //  arrayCopy = array.filter(array => array.name !== corrName);
     
 
     //SHUFFLE THE ARRAY
     shuffleArr(arrayCopy);  
     //GENERATE NEW ARRAY
     newRandomArr = arrayCopy.slice(0, 3);
-    newRandomArr.push(corrName);
-    console.log(newRandomArr);
+    newRandomArr.push({name: corrName});
+    //console.log(newRandomArr);
     //SHUFFFLE NEW ARRAY AGAIN SO RIGHT BUTTON ISN'T AT THE SAME SPOT EVERY TIME 
     shuffleArr(newRandomArr);
 
-    btnEl.innerHTML = "";
+    namesEl.innerHTML = "";
 
     // DISPLAYING NAMES FROM NEW ARRAY
     newRandomArr.forEach((names) => {
+      console.log(names.name)
       if (names.name === corrName) {
-        btnEl.innerHTML += `<button id="corrGuess" class="btn btn-light">${names.name}</button>`;
+        namesEl.innerHTML += `<button id="corrGuess" class="btn btn-light">${names.name}</button>`;
       } else
-        btnEl.innerHTML += `<button id="btn" class="btn btn-light">${names.name}</button>`;
+        namesEl.innerHTML += `<button id="btn" class="btn btn-light">${names.name}</button>`;
     });
   }
 };
 start();
 
-btnEl.addEventListener("click", (e) => {
+namesEl.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
     guesses++;
     console.log(guesses);
-    if (e,target.id === `corrGuess`) {
+    console.log(e.target.id)
+    if (e.target.id === `corrGuess`) {
       corrNrOfGuesses++;
       start();
     } else {
