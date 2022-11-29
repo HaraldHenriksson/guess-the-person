@@ -47,6 +47,10 @@ const tenEl = document.querySelector("#ten");
 const twentyEl = document.querySelector("#twenty");
 const allEl = document.querySelector("#all");
 const btnEl = document.querySelector("#btn");
+const resultEl = document.querySelector('#result');
+const restartEl = document.querySelector('#restart')
+
+restartEl.style.display ="none";
 
 startEl.addEventListener("click", () => {
   startEl.style.display = "none";
@@ -98,7 +102,7 @@ const start = () => {
     picEl.src = "students/" + corrClassmate.image
     console.log(picEl.src)
     corrName = corrClassmate.name
-   // console.log(corrName)
+    console.log(corrName)
     arrayCopy = array.filter(array => array.name !== corrName);
     
 
@@ -137,6 +141,19 @@ namesEl.addEventListener("click", (e) => {
       start();
     }
     console.log(guesses, corrNrOfGuesses);
+  }
+  if (shortMode === true && guesses === 10) {
+    namesEl.style.display = "none";
+    restartEl.style.display = "flex";
+    resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 10 correct</button>`;
+  } else if (defaultMode === true && guesses === 20) {
+    namesEl.style.display = "none";
+    restartEl.style.display = "flex";
+    resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 20 correct</button>`;
+  } else if (longMode === true && guesses === 35) {
+    namesEl.style.display = "none";
+    restartEl.style.display = "flex";
+    resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 35 correct</button>`;
   }
 });
 
