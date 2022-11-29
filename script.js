@@ -95,10 +95,11 @@ const start = () => {
   if (guesses !== array.length) {
     corrClassmate = array[Math.floor(Math.random() * array.length)]
     //console.log(corrClassmate.image)
-    picEl.src += corrClassmate.image
+    picEl.src = "students/" + corrClassmate.image
+    console.log(picEl.src)
     corrName = corrClassmate.name
    // console.log(corrName)
-  //  arrayCopy = array.filter(array => array.name !== corrName);
+    arrayCopy = array.filter(array => array.name !== corrName);
     
 
     //SHUFFLE THE ARRAY
@@ -114,7 +115,7 @@ const start = () => {
 
     // DISPLAYING NAMES FROM NEW ARRAY
     newRandomArr.forEach((names) => {
-      console.log(names.name)
+      //console.log(names.name)
       if (names.name === corrName) {
         namesEl.innerHTML += `<button id="corrGuess" class="btn btn-light">${names.name}</button>`;
       } else
