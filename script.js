@@ -129,6 +129,12 @@ const start = () => {
 };
 start();
 
+const display = () => {
+  namesEl.style.display = "none";
+    restartEl.style.display = "flex";
+    picEl.style.display = "none";
+}
+
 namesEl.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
     guesses++;
@@ -143,19 +149,20 @@ namesEl.addEventListener("click", (e) => {
     console.log(guesses, corrNrOfGuesses);
   }
   if (shortMode === true && guesses === 10) {
-    namesEl.style.display = "none";
-    restartEl.style.display = "flex";
+    display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 10 correct</button>`;
   } else if (defaultMode === true && guesses === 20) {
-    namesEl.style.display = "none";
-    restartEl.style.display = "flex";
+    display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 20 correct</button>`;
   } else if (longMode === true && guesses === 35) {
-    namesEl.style.display = "none";
-    restartEl.style.display = "flex";
+    display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 35 correct</button>`;
   }
 });
+
+restartEl.addEventListener('click', () => {
+  location.reload();
+})
 
 // // GETTING THE CORRECT NAME
 // const getRandom = array[Math.floor(Math.random() * array.length)];
