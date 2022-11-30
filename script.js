@@ -93,17 +93,18 @@ let corrNrOfGuesses = 0;
 let newRandomArr = [];
 let corrClassmate = "";
 let corrName = "";
+let namesNotToShow = [];
 
 // START function
 const start = () => {
   if (guesses !== array.length) {
-    corrClassmate = array[Math.floor(Math.random() * array.length)]
+    corrClassmate = arrayCopy[Math.floor(Math.random() * array.length)]
     //console.log(corrClassmate.image)
     picEl.src = "students/" + corrClassmate.image
-    console.log(picEl.src)
     corrName = corrClassmate.name
-    console.log(corrName)
+    namesNotToShow.push({name: corrName});
     arrayCopy = array.filter(array => array.name !== corrName);
+    console.log(arrayCopy)
     
 
     //SHUFFLE THE ARRAY
@@ -129,66 +130,54 @@ const start = () => {
 };
 start();
 
+
 const display = () => {
   namesEl.style.display = "none";
     restartEl.style.display = "flex";
     picEl.style.display = "none";
 }
 
+let complete = false
+
 namesEl.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
     guesses++;
     console.log(guesses);
-    console.log(e.target.id)
     if (e.target.id === `corrGuess`) {
       corrNrOfGuesses++;
-      start();
+      e.target.classList.replace("btn-light", "btn-success");
+      startDelay();
     } else {
-      start();
+      e.target.classList.replace("btn-light", "btn-danger");
+      startDelay();
     }
     console.log(guesses, corrNrOfGuesses);
   }
   if (shortMode === true && guesses === 10) {
     display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 10 correct</button>`;
+    complete = true
   } else if (defaultMode === true && guesses === 20) {
     display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 20 correct</button>`;
-  } else if (longMode === true && guesses === 35) {
+    complete = true
+  } else if (longMode === true && guesses === 39) {
     display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 35 correct</button>`;
+    complete = true
   }
 });
+
+const startDelay = () => {
+  setTimeout( () => {
+      if (!complete) {
+        start();
+      }
+  }, 1000);
+};
 
 restartEl.addEventListener('click', () => {
   location.reload();
 })
 
-// // GETTING THE CORRECT NAME
-// const getRandom = array[Math.floor(Math.random() * array.length)];
-// console.log(getRandom.image, getRandom.name);
 
-// const actualName = getRandom.name
-// console.log(actualName)
-
-// //MAKING A FUNCTION WICH GENERATES RANDOM NAMES
-// const randomNames = () => {
-//    return array[Math.floor(Math.random() * array.length)]
-// }
-
-// // MAKING A NEW RANDOM ARRAY WITH 3 MORE NAMES
-// const randomArr = array.sort(() => 0.5 - Math.random());
-// console.log(randomArr)
-
-// const slicedArr = randomArr.slice(0, 3);
-// console.log(slicedArr);
-
-// slicedArr.forEach(names => {
-//     console.log(names.name)
-// })
-// //======================
-
-// const newPic = () => {
-//   picEl.innerHTML += `<img src="students/${getRandom.image}" alt="">`;
-// };
-// newPic();
