@@ -49,6 +49,7 @@ const allEl = document.querySelector("#all");
 const btnEl = document.querySelector("#btn");
 const resultEl = document.querySelector('#result');
 const restartEl = document.querySelector('#restart')
+const questionEl = document.querySelector('#question')
 
 restartEl.style.display ="none";
 
@@ -56,6 +57,8 @@ startEl.addEventListener("click", () => {
   startEl.style.display = "none";
   namesEl.style.display = "flex";
   picEl.style.display = "flex";
+  questionEl.style.display = "none";
+  restartEl.style.display ="flex";
 });
 
 // MAKING A COPY OF ARRAY
@@ -98,12 +101,14 @@ let namesNotToShow = [];
 // START function
 const start = () => {
   if (guesses !== array.length) {
-    corrClassmate = arrayCopy[Math.floor(Math.random() * array.length)]
+    corrClassmate = array[guesses]
     //console.log(corrClassmate.image)
     picEl.src = "students/" + corrClassmate.image
     corrName = corrClassmate.name
     namesNotToShow.push({name: corrName});
     arrayCopy = array.filter(array => array.name !== corrName);
+    console.log(corrClassmate)
+    console.log(namesNotToShow)
     console.log(arrayCopy)
     
 
@@ -133,7 +138,6 @@ start();
 
 const display = () => {
   namesEl.style.display = "none";
-    restartEl.style.display = "flex";
     picEl.style.display = "none";
 }
 
@@ -161,7 +165,7 @@ namesEl.addEventListener("click", (e) => {
     display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 20 correct</button>`;
     complete = true
-  } else if (longMode === true && guesses === 39) {
+  } else if (longMode === true && guesses === array.length) {
     display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 35 correct</button>`;
     complete = true
@@ -173,8 +177,10 @@ const startDelay = () => {
       if (!complete) {
         start();
       }
-  }, 1000);
+  }, 800);
 };
+
+
 
 restartEl.addEventListener('click', () => {
   location.reload();
