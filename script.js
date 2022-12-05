@@ -46,10 +46,10 @@ const namesEl = document.querySelector("#names");
 const tenEl = document.querySelector("#ten");
 const twentyEl = document.querySelector("#twenty");
 const allEl = document.querySelector("#all");
-const btnEl = document.querySelector("#btn");
 const resultEl = document.querySelector('#result');
-const restartEl = document.querySelector('#restart')
-const questionEl = document.querySelector('#question')
+const restartEl = document.querySelector('#restart');
+const questionEl = document.querySelector('#question');
+const picResultEl = document.querySelector('#picResult');
 
 restartEl.style.display ="none";
 
@@ -96,20 +96,17 @@ let corrNrOfGuesses = 0;
 let newRandomArr = [];
 let corrClassmate = "";
 let corrName = "";
-let namesNotToShow = [];
+let allCorrect = [];
+let allWrong = [];
 
 // START function
 const start = () => {
   if (guesses !== array.length) {
-    corrClassmate = array[guesses]
-    //console.log(corrClassmate.image)
+    // array = array.filter(array => array.name !== namesNotToShow);
+    corrClassmate = array[guesses]  
     picEl.src = "students/" + corrClassmate.image
     corrName = corrClassmate.name
-    namesNotToShow.push({name: corrName});
     arrayCopy = array.filter(array => array.name !== corrName);
-    console.log(corrClassmate)
-    console.log(namesNotToShow)
-    console.log(arrayCopy)
     
 
     //SHUFFLE THE ARRAY
@@ -117,7 +114,7 @@ const start = () => {
     //GENERATE NEW ARRAY
     newRandomArr = arrayCopy.slice(0, 3);
     newRandomArr.push({name: corrName});
-    //console.log(newRandomArr);
+    console.log(allWrong)
     //SHUFFFLE NEW ARRAY AGAIN SO RIGHT BUTTON ISN'T AT THE SAME SPOT EVERY TIME 
     shuffleArr(newRandomArr);
 
@@ -141,6 +138,15 @@ const display = () => {
     picEl.style.display = "none";
 }
 
+const displayResult = () => {
+  allCorrect.forEach((img) => {
+    picResultEl.innerHTML += `<img id="correctPicResult" src="students/${img.image}" alt="Picture of correct guessed classmate">`
+  })
+  allWrong.forEach((img) => {
+    picResultEl.innerHTML += `<img id="wrongPicResult" src="students/${img.image}" alt="Picture of wrong guessed classmate">`
+  })
+}
+
 let complete = false
 
 namesEl.addEventListener("click", (e) => {
@@ -150,9 +156,11 @@ namesEl.addEventListener("click", (e) => {
     if (e.target.id === `corrGuess`) {
       corrNrOfGuesses++;
       e.target.classList.replace("btn-light", "btn-success");
+      allCorrect.push({image: corrClassmate.image});
       startDelay();
     } else {
       e.target.classList.replace("btn-light", "btn-danger");
+      allWrong.push({image: corrClassmate.image});
       startDelay();
     }
     console.log(guesses, corrNrOfGuesses);
@@ -161,13 +169,16 @@ namesEl.addEventListener("click", (e) => {
     display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 10 correct</button>`;
     complete = true
+    displayResult();
   } else if (defaultMode === true && guesses === 20) {
     display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 20 correct</button>`;
+    displayResult();
     complete = true
   } else if (longMode === true && guesses === array.length) {
     display();
     resultEl.innerHTML += `<button class="btn btn-light">You got ${corrNrOfGuesses} out of 35 correct</button>`;
+    displayResult();
     complete = true
   }
 });
@@ -177,7 +188,7 @@ const startDelay = () => {
       if (!complete) {
         start();
       }
-  }, 800);
+  }, 400);
 };
 
 
@@ -186,4 +197,4 @@ restartEl.addEventListener('click', () => {
   location.reload();
 })
 
-
+//[Math.floor(Math.random() * array.length)]  

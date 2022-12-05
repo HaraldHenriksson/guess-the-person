@@ -48,8 +48,21 @@ img {
 	display: none;
 	margin: 2%;
 }
+
  button {
 	margin: 2%;
+}
+
+#correctPicResult {
+	width: 100px;
+	height: 100px;
+}
+
+#wrongPicResult {
+	width: 100px;
+	height: 100px;
+	filter:grayscale(1)
+	
 }
 
 @media (max-width: 400px) {
