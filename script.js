@@ -69,7 +69,7 @@ let namesNotToShow = [];
 const start = () => {
   if (guesses !== array.length) {
     // array = array.filter(array => array.name !== namesNotToShow);
-    corrClassmate = arrayCopy[guesses]
+    corrClassmate = array[guesses]
     picEl.src = "students/" + corrClassmate.image
     corrName = corrClassmate.name
     arrayCopy = array.filter(array => array.name !== corrName);
